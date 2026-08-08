@@ -14,6 +14,13 @@ describe('map stage height chain', () => {
     expect(block).toMatch(/min-height:\s*70vh/)
   })
 
+  it('keeps map actions chrome inside the stage so fullscreen retains exports/exit', () => {
+    const block = siteCss.match(/\.map-stage \.map-toolbar\s*\{[^}]+\}/s)?.[0] ?? ''
+    expect(block).toMatch(/flex-shrink:\s*0/)
+    expect(block).toMatch(/margin:\s*0/)
+    expect(siteCss).toMatch(/\.map-stage \.map-toolbar-fullscreen\s*\{[^}]*margin-left:\s*auto/s)
+  })
+
   it('forces the flowchart host to height:100% of the definite stage', () => {
     const block =
       siteCss.match(/\.map-stage \.vd-flowchart-host,\s*\.map-stage \.vd-flowchart\s*\{[^}]+\}/s)?.[0] ?? ''

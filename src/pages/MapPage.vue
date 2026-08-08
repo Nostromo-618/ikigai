@@ -245,30 +245,6 @@ onBeforeUnmount(() => {
       <template v-else>
         <PrivacyReminder />
 
-        <div class="map-toolbar" role="toolbar" aria-label="Map actions">
-          <button type="button" class="vd-btn vd-btn-primary vd-btn-sm" data-testid="export-png" @click="doExportPng">
-            <i class="ph ph-image" aria-hidden="true"></i> Export PNG
-          </button>
-          <button type="button" class="vd-btn vd-btn-sm" data-testid="export-svg" @click="doExportSvg">
-            <i class="ph ph-file-svg" aria-hidden="true"></i> Export SVG
-          </button>
-          <button type="button" class="vd-btn vd-btn-sm" data-testid="export-html" @click="doExportHtml">
-            <i class="ph ph-code" aria-hidden="true"></i> Export HTML
-          </button>
-          <button type="button" class="vd-btn vd-btn-ghost-primary vd-btn-sm" data-testid="reset-map" @click="resetMap">
-            <i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i> Reset map
-          </button>
-          <button
-            type="button"
-            class="vd-btn vd-btn-ghost-primary vd-btn-sm"
-            :aria-pressed="fullscreen"
-            @click="toggleFullscreen"
-          >
-            <i :class="fullscreen ? 'ph ph-arrows-in' : 'ph ph-arrows-out'" aria-hidden="true"></i>
-            {{ fullscreen ? 'Exit full screen' : 'Full screen' }}
-          </button>
-        </div>
-
         <p v-if="statusMessage" class="empty-hint" role="status">{{ statusMessage }}</p>
         <p v-if="exportError" class="empty-hint" role="alert" style="color: var(--ik-love)">
           {{ exportError }}
@@ -281,6 +257,30 @@ onBeforeUnmount(() => {
           :class="{ 'is-fullscreen': fullscreen }"
           data-testid="map-stage"
         >
+          <div class="map-toolbar" role="toolbar" aria-label="Map actions">
+            <button type="button" class="vd-btn vd-btn-primary vd-btn-sm" data-testid="export-png" @click="doExportPng">
+              <i class="ph ph-image" aria-hidden="true"></i> Export PNG
+            </button>
+            <button type="button" class="vd-btn vd-btn-sm" data-testid="export-svg" @click="doExportSvg">
+              <i class="ph ph-file-svg" aria-hidden="true"></i> Export SVG
+            </button>
+            <button type="button" class="vd-btn vd-btn-sm" data-testid="export-html" @click="doExportHtml">
+              <i class="ph ph-code" aria-hidden="true"></i> Export HTML
+            </button>
+            <button type="button" class="vd-btn vd-btn-ghost-primary vd-btn-sm" data-testid="reset-map" @click="resetMap">
+              <i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i> Reset map
+            </button>
+            <button
+              type="button"
+              class="vd-btn vd-btn-ghost-primary vd-btn-sm map-toolbar-fullscreen"
+              data-testid="map-fullscreen"
+              :aria-pressed="fullscreen"
+              @click="toggleFullscreen"
+            >
+              <i :class="fullscreen ? 'ph ph-arrows-in' : 'ph ph-arrows-out'" aria-hidden="true"></i>
+              {{ fullscreen ? 'Exit full screen' : 'Full screen' }}
+            </button>
+          </div>
           <OnboardingTips v-if="showOnboarding && ready" @done="finishOnboarding" />
           <VdFlowchart
             v-if="ready"

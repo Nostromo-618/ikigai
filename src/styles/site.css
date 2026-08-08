@@ -587,6 +587,18 @@ a:hover {
   margin: 1rem 0;
 }
 
+.map-stage .map-toolbar {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--vd-border-color);
+  background: color-mix(in srgb, var(--vd-bg-primary) 88%, var(--vd-bg-secondary));
+}
+
+.map-stage .map-toolbar-fullscreen {
+  margin-left: auto;
+}
+
 .map-stage {
   /* Explicit height (not min-height alone): % heights on host→shell→body
      need a definite containing block. Flex alone left height:auto on the
@@ -602,6 +614,7 @@ a:hover {
   height: 70vh;
   min-height: 70vh;
   position: relative;
+  margin-top: 1rem;
 }
 
 .map-stage--venn {
