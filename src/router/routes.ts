@@ -45,5 +45,10 @@ export const routes: RouteRecordRaw[] = [
   { path: '/learn', redirect: '/read' },
   { path: '/learn/:pathMatch(.*)*', redirect: (to) => `/read/${to.params.pathMatch}` },
   { path: '/quiz', name: 'quiz', component: () => import('@/pages/QuizPage.vue') },
+  {
+    path: '/farewell',
+    name: 'farewell',
+    component: () => import('@/pages/FarewellPage.vue'),
+  },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('@/pages/NotFound.vue') },
 ]

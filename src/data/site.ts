@@ -35,7 +35,7 @@ export const NAV: NavItem[] = [
  * Bump this when disclaimer text changes meaningfully — users must re-accept.
  * Stored value shape: `{ version: string, acceptedAt: string }`
  */
-export const DISCLAIMER_VERSION = '1'
+export const DISCLAIMER_VERSION = '2'
 
 /** localStorage keys owned by this app (theme keys use ikigai- via vanduo remap). */
 export const STORAGE_KEYS = {

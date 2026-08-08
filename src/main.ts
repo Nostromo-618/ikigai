@@ -13,6 +13,7 @@ import App from './App.vue'
 import { routes } from './router/routes'
 import { reveal } from './composables/reveal'
 import { SITE } from './data/site'
+import { hasDeclinedDisclaimer } from './lib/disclaimer'
 
 export const createApp = ViteSSG(
   App,
@@ -25,7 +26,7 @@ export const createApp = ViteSSG(
       return { top: 0 }
     },
   },
-  ({ app }) => {
+  ({ app, router }) => {
     app.use(VanduoVue, {
       themeDefaults: {
         PRIMARY_LIGHT: SITE.theme.PRIMARY_LIGHT,
@@ -36,5 +37,13 @@ export const createApp = ViteSSG(
       },
     })
     app.directive('reveal', reveal)
+
+    router.beforeEach((to) => {
+      if (typeof sessionStorage === 'undefined') return true
+      if (hasDeclinedDisclaimer() && to.name !== 'farewell') {
+        return { name: 'farewell' }
+      }
+      return true
+    })
   },
 )

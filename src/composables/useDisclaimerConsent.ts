@@ -59,7 +59,7 @@ export function useDisclaimerConsent() {
 
   function reopenGate() {
     clearDeclinedDisclaimer()
-    view.value = 'gate'
+    view.value = hasAcceptedDisclaimer(DISCLAIMER_VERSION) ? 'accepted' : 'gate'
   }
 
   function resetAcceptance() {

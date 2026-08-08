@@ -8,7 +8,7 @@ import { SSG_ROUTES } from './src/router/ssgRoutes.ts'
 
 function generateSeoFiles() {
   const siteUrl = SITE.url.endsWith('/') ? SITE.url.slice(0, -1) : SITE.url
-  const sitemapUrls = SSG_ROUTES.filter((r) => !r.includes('*')).map((path) => {
+  const sitemapUrls = SSG_ROUTES.filter((r) => !r.includes('*') && r !== '/farewell').map((path) => {
     const loc = path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`
     return {
       loc,

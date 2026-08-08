@@ -662,6 +662,56 @@ html[data-theme='dark'] .map-stage--venn {
   overflow: hidden;
 }
 
+.app-shell.is-farewell .app-main--farewell {
+  padding-top: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.farewell-page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.farewell-page-inner {
+  width: min(28rem, 100%);
+  text-align: center;
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+}
+
+.farewell-icon {
+  font-size: clamp(2.4rem, 6vw, 3.2rem);
+  color: var(--ik-brand);
+  line-height: 1;
+}
+
+.farewell-page-inner h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+  letter-spacing: -0.02em;
+}
+
+.farewell-page-inner p {
+  margin: 0;
+  color: var(--vd-text-muted);
+  line-height: 1.55;
+  max-width: 36ch;
+}
+
+.farewell-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
 .consent-overlay {
   position: fixed;
   inset: 0;

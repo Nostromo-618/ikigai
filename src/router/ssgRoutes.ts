@@ -11,4 +11,5 @@ export const SSG_ROUTES = [
   '/read/stories',
   '/read/facts',
   '/quiz',
+  '/farewell',
 ]

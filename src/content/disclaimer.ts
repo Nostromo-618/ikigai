@@ -1,7 +1,7 @@
 export const DISCLAIMER_TITLE = 'Before you continue'
 
 export const DISCLAIMER_INTRO =
-  'Please read and accept these terms to use the interactive tools on this site (including the map and quiz). You can still browse Read pages if you decline, but interactive features will stay locked until you accept.'
+  'Please read and accept these terms to use this site (including the map, quiz, and Read pages). If you decline, the site stays locked until you accept — you can return later to re-read these terms.'
 
 export interface DisclaimerSection {
   heading: string
@@ -31,10 +31,10 @@ export const DISCLAIMER_SECTIONS: DisclaimerSection[] = [
   },
   {
     heading: 'Your responsibility',
-    body: 'By accepting, you confirm you are old enough to use the site where you live, that you understand the limits above, and that you will not treat scores, diagrams, or generated pages as clinical or legal conclusions. If you do not agree, decline — you can re-read these terms later, but interactive tools will remain unavailable until you accept.',
+    body: 'By accepting, you confirm you are old enough to use the site where you live, that you understand the limits above, and that you will not treat scores, diagrams, or generated pages as clinical or legal conclusions. If you do not agree, decline — you can re-read these terms later, but the site remains unavailable until you accept.',
   },
 ]
 
 export const FAREWELL_TITLE = 'You chose not to accept'
 export const FAREWELL_BODY =
-  'That’s okay. Without accepting the terms, this project cannot unlock the interactive map, quiz, or related storage features. You can still leave, or come back to re-read the disclaimer whenever you are ready.'
+  'That’s okay. Without accepting the terms, this project cannot unlock the map, quiz, Read pages, or related storage features. Come back to re-read the disclaimer whenever you are ready.'

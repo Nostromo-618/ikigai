@@ -94,4 +94,12 @@ describe('disclaimer acceptance', () => {
     expect(consent.accepted.value).toBe(true)
     expect(consent.showGate.value).toBe(false)
   })
+
+  it('reopenGate does not revoke an existing acceptance', () => {
+    const consent = useDisclaimerConsent()
+    consent.accept()
+    consent.reopenGate()
+    expect(consent.accepted.value).toBe(true)
+    expect(consent.showGate.value).toBe(false)
+  })
 })
