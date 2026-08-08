@@ -78,18 +78,34 @@
 }
 
 /*
- * Palette | canvas only. Must also reset rows: vd3's ≤1180 / ≤840 media
- * queries keep an inspector row (`auto` / `16rem`). With the inspector
- * display:none, that empty track still exists — and at ≤840px the canvas
- * auto-places into the short `auto` row (thin Venn sliver, empty grey below).
- * minmax(0,1fr) fills the shell body row once .map-stage flex-gives the host
- * a definite height (see site.css).
+ * Height chain (definite at every step — see site.css height:70vh on stage):
+ *   .map-stage (70vh) → host (100%) → shell (100%, rows auto|1fr)
+ *   → body (100% of 1fr row) → palette | canvas (stretch / 100%)
+ *
+ * Also reset rows: vd3's ≤1180 / ≤840 media queries keep an inspector row
+ * (`auto` / `16rem`). With inspector display:none that empty track still
+ * exists — and at ≤840px canvas auto-places into the short `auto` row.
  */
+.map-stage .vd-flowchart-shell {
+  height: 100% !important;
+  min-height: 0 !important;
+  align-self: stretch;
+}
+
 .map-stage .vd-flowchart-body {
   grid-template-columns: 88px minmax(0, 1fr) !important;
   grid-template-rows: minmax(0, 1fr) !important;
-  min-height: 0;
+  height: 100% !important;
+  min-height: 0 !important;
   align-self: stretch;
+  align-items: stretch !important;
+}
+
+.map-stage .vd-flowchart-panel--palette,
+.map-stage .vd-flowchart-canvas {
+  align-self: stretch !important;
+  height: 100% !important;
+  min-height: 100% !important;
 }
 
 /* Show Rounded, Circle, Diamond only (hides Arrow tool + rect/junction/label/textbox) */

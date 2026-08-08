@@ -619,16 +619,21 @@ html[data-theme='dark'] .map-stage--venn {
   inset: var(--ik-nav-h) 0 0;
   z-index: 40;
   border-radius: 0;
+  /* Let inset define height (height:70vh would ignore bottom). */
+  height: auto;
   min-height: unset;
 }
 
+/* Host = Vue root (.vd-flowchart + .vd-flowchart-host). Must be height:100%
+   (definite), not height:auto — otherwise shell % / body 1fr collapse. */
 .map-stage .vd-flowchart-host,
 .map-stage .vd-flowchart {
   flex: 1 1 auto;
   align-self: stretch;
   width: 100%;
-  min-height: 0;
-  height: auto;
+  min-height: 0 !important;
+  height: 100% !important;
+  box-sizing: border-box;
 }
 
 .disclaimer {
