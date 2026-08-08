@@ -1,0 +1,55 @@
+{
+  "name": "ikigai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive Ikigai map — Vue 3 + vd3 + vd3-cbun flowchart, published on GitHub Pages",
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm run build:export-shell && vite-ssg build",
+    "build:export-shell": "node scripts/build-export-shell.mjs",
+    "preview": "vite preview --port 8787 --host",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --project='Chromium Desktop'",
+    "test:e2e:full": "playwright test",
+    "test:a11y": "playwright test a11y-smoke --project='Chromium Desktop'"
+  },
+  "dependencies": {
+    "@fontsource/elms-sans": "^5.3.0",
+    "@unhead/vue": "^3.3.1",
+    "@vanduo-oss/vd3": "^1.2.1",
+    "@vanduo-oss/vd3-cbun": "^1.3.1",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.4.11",
+    "esbuild": "^0.28.1",
+    "jsdom": "^30.0.1",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "vite": "^8.2.1",
+    "vite-ssg": "^28.3.0",
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.9"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@unhead/dom": "^3.3.1",
+      "@unhead/vue": "^3.3.1"
+    },
+    "patchedDependencies": {
+      "vite-ssg@28.3.0": "patches/vite-ssg@28.3.0.patch"
+    }
+  }
+}

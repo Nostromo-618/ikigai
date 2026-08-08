@@ -1,0 +1,156 @@
+/* Category colors — pastel Venn-harmonized fills for flowchart tiles */
+
+.vd-flowchart-node[data-category='love'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #e8c468 55%, var(--vd-bg-primary));
+  stroke: #c9a227;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='goodAt'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #6eb8a8 55%, var(--vd-bg-primary));
+  stroke: #3d8f7f;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='worldNeeds'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #e88c8c 55%, var(--vd-bg-primary));
+  stroke: #c45c5c;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='paidFor'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #7dbad6 55%, var(--vd-bg-primary));
+  stroke: #4a8aad;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='passion'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #9aaa5c 45%, var(--vd-bg-primary));
+  stroke: #6d7a3a;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='mission'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #c48a9a 45%, var(--vd-bg-primary));
+  stroke: #9a5a6a;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='profession'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #c9a06a 45%, var(--vd-bg-primary));
+  stroke: #9a7340;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='vocation'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #d07878 45%, var(--vd-bg-primary));
+  stroke: #a05050;
+  stroke-width: 2;
+}
+
+.vd-flowchart-node[data-category='ikigai'] .vd-flowchart-node-shape {
+  fill: color-mix(in srgb, #3a322c 70%, var(--vd-bg-primary));
+  stroke: #2a2420;
+  stroke-width: 2.5;
+}
+
+/* Map stage: calm canvas so the Venn reads first */
+.map-stage .vd-flowchart-host,
+.map-stage .vd-flowchart {
+  background: transparent;
+}
+
+.map-stage .vd-flowchart-canvas,
+.map-stage .vd-flowchart-svg {
+  background: transparent !important;
+}
+
+.map-stage .vd-flowchart-grid,
+.map-stage pattern {
+  opacity: 0 !important;
+}
+
+/* Simplify flowchart chrome: no inspector, no Tree/Radial/Grid arrange */
+.map-stage .vd-flowchart-panel--inspector,
+.map-stage .vd-flowchart-arrange,
+.map-stage [data-flowchart-arrange] {
+  display: none !important;
+}
+
+/*
+ * Palette | canvas only. Must also reset rows: vd3's ≤1180 / ≤840 media
+ * queries keep an inspector row (`auto` / `16rem`). With the inspector
+ * display:none, that empty track still exists — and at ≤840px the canvas
+ * auto-places into the short `auto` row (thin Venn sliver, empty grey below).
+ * minmax(0,1fr) fills the shell body row once .map-stage flex-gives the host
+ * a definite height (see site.css).
+ */
+.map-stage .vd-flowchart-body {
+  grid-template-columns: 88px minmax(0, 1fr) !important;
+  grid-template-rows: minmax(0, 1fr) !important;
+  min-height: 0;
+  align-self: stretch;
+}
+
+/* Show Rounded, Circle, Diamond only (hides Arrow tool + rect/junction/label/textbox) */
+.map-stage .vd-flowchart-palette-btn:not([data-node-type='rounded-rect']):not([data-node-type='circle']):not([data-node-type='diamond']) {
+  display: none !important;
+}
+
+.map-stage .vd-flowchart-panel--palette {
+  padding: 0.65rem 0.4rem;
+  gap: 0.55rem;
+}
+
+.map-stage .vd-flowchart-palette {
+  grid-template-columns: 1fr !important;
+  gap: 0.4rem;
+}
+
+.map-stage .vd-flowchart-palette-btn {
+  min-height: 3.35rem;
+  padding: 0.35rem 0.15rem;
+}
+
+/* Keep the side rail on narrow viewports (three tools fit; avoid stacking) */
+@media (max-width: 840px) {
+  .map-stage .vd-flowchart-panel--palette {
+    border-right: 1px solid var(--vd-flowchart-border, var(--vd-border-color));
+    border-bottom: 0;
+  }
+}
+
+/* Venn typography (inside flowchart SVG world) */
+.ikigai-venn-pillar {
+  fill: color-mix(in srgb, var(--vd-text-primary) 88%, transparent);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+}
+
+.ikigai-venn-pair {
+  fill: color-mix(in srgb, var(--vd-text-primary) 78%, transparent);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.ikigai-venn-center {
+  fill: #f8f6f2;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: inherit;
+  dominant-baseline: middle;
+}
+
+html[data-theme='dark'] .ikigai-venn-center-shape {
+  fill: rgba(20, 24, 28, 0.9);
+}
+
+html[data-theme='dark'] .ikigai-venn-circle {
+  stroke: rgba(255, 255, 255, 0.2);
+}

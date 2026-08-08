@@ -1,0 +1,15 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+coverage
+test-results
+playwright-report
+blob-report
+.env
+.env.*
+!.env.example
+src/generated/
+scripts/.export-shell-bundle.js
+*.log

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-primary="red" data-neutral="slate" data-radius="0.25">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#E3300B" />
+    <script>
+      (function () {
+        try {
+          var origGet = localStorage.getItem.bind(localStorage);
+          var origSet = localStorage.setItem.bind(localStorage);
+          var origRemove = localStorage.removeItem.bind(localStorage);
+
+          var mapKey = function (key) {
+            if (typeof key === 'string' && key.indexOf('vanduo-') === 0) {
+              var mapped = 'ikigai-' + key.slice(7);
+              if (origGet(mapped) === null) {
+                var oldVal = origGet(key);
+                if (oldVal !== null) origSet(mapped, oldVal);
+              }
+              return mapped;
+            }
+            return key;
+          };
+
+          localStorage.getItem = function (key) {
+            return origGet(mapKey(key));
+          };
+          localStorage.setItem = function (key, val) {
+            return origSet(mapKey(key), val);
+          };
+          localStorage.removeItem = function (key) {
+            return origRemove(mapKey(key));
+          };
+        } catch (e) {}
+
+        /* Locked brand tokens — overwrite so old emerald/customizer prefs do not stick. */
+        var LOCKED = {
+          'ikigai-primary-color': 'red',
+          'ikigai-neutral-color': 'slate',
+          'ikigai-radius': '0.25',
+          'ikigai-font-preference': 'system',
+        };
+        var el = document.documentElement;
+        try {
+          for (var k in LOCKED) {
+            localStorage.setItem(k, LOCKED[k]);
+          }
+          var map = {
+            'ikigai-primary-color': 'data-primary',
+            'ikigai-neutral-color': 'data-neutral',
+            'ikigai-radius': 'data-radius',
+            'ikigai-font-preference': 'data-font',
+            'ikigai-palette': 'data-palette',
+          };
+          for (var key in map) {
+            var v = localStorage.getItem(key);
+            if (key === 'ikigai-font-preference') {
+              /* Elms Sans is applied in CSS; keep vd3 font attr unset (system). */
+              el.removeAttribute('data-font');
+              continue;
+            }
+            if (v && v !== 'system') el.setAttribute(map[key], v);
+          }
+          var theme = localStorage.getItem('ikigai-theme-preference');
+          if (theme === 'light' || theme === 'dark') {
+            el.setAttribute('data-theme', theme);
+          } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            el.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
