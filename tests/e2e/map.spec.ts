@@ -97,6 +97,22 @@ test.describe('map', () => {
     expect(text).toBe('Persisted Ikigai')
   })
 
+  test('persists fullscreen across reload', async ({ page }) => {
+    await page.goto('./map/', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByTestId('map-stage')).toBeVisible({ timeout: 15_000 })
+    await dismissOnboarding(page)
+
+    await page.getByTestId('map-fullscreen').click()
+    await expect(page.getByTestId('map-stage')).toHaveClass(/is-fullscreen/)
+    await expect(page.getByTestId('map-fullscreen')).toHaveAttribute('aria-pressed', 'true')
+
+    await page.reload({ waitUntil: 'domcontentloaded' })
+    await expect(page.getByTestId('map-stage')).toBeVisible({ timeout: 15_000 })
+    await dismissOnboarding(page)
+    await expect(page.getByTestId('map-stage')).toHaveClass(/is-fullscreen/)
+    await expect(page.getByTestId('map-fullscreen')).toHaveAttribute('aria-pressed', 'true')
+  })
+
   test('reset restores seed', async ({ page }) => {
     await page.goto('./map/', { waitUntil: 'domcontentloaded' })
     await dismissOnboarding(page)

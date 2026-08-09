@@ -3,7 +3,9 @@ import {
   clearDocument,
   loadDocument,
   saveDocument,
+  isMapFullscreen,
   isOnboardingDone,
+  setMapFullscreen,
   setOnboardingDone,
 } from '@/lib/storage'
 import { acceptDisclaimer } from '@/lib/disclaimer'
@@ -63,5 +65,15 @@ describe('storage', () => {
     clearDocument()
     expect(localStorage.getItem(STORAGE_KEYS.document)).toBeNull()
     expect(isOnboardingDone()).toBe(true)
+  })
+
+  it('persists map fullscreen preference', () => {
+    expect(isMapFullscreen()).toBe(false)
+    setMapFullscreen(true)
+    expect(localStorage.getItem(STORAGE_KEYS.mapFullscreen)).toBe('1')
+    expect(isMapFullscreen()).toBe(true)
+    setMapFullscreen(false)
+    expect(localStorage.getItem(STORAGE_KEYS.mapFullscreen)).toBeNull()
+    expect(isMapFullscreen()).toBe(false)
   })
 })

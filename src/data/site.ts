@@ -42,6 +42,8 @@ export const STORAGE_KEYS = {
   document: 'ikigai-flowchart-document',
   onboardingDone: 'ikigai-onboarding-done',
   quizScore: 'ikigai-quiz-score',
+  /** Map stage fullscreen layout preference. */
+  mapFullscreen: 'ikigai-map-fullscreen',
   /** @deprecated soft map banner; kept for migration cleanup only */
   disclaimerDismissed: 'ikigai-disclaimer-dismissed',
   /** Mandatory gate acceptance (versioned JSON). */

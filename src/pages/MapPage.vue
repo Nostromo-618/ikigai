@@ -15,9 +15,11 @@ import { ensureVennInWorld } from '@/lib/vennBackdrop'
 import { attachFlowchartToolbarTooltips } from '@/lib/flowchartToolbarTooltips'
 import {
   clearDocument,
+  isMapFullscreen,
   isOnboardingDone,
   loadDocument,
   saveDocument,
+  setMapFullscreen,
   setOnboardingDone,
 } from '@/lib/storage'
 import { downloadBlob, downloadText } from '@/lib/export/download'
@@ -38,7 +40,7 @@ useSeo({
 const { accepted } = useDisclaimerConsent()
 
 const ready = ref(false)
-const fullscreen = ref(false)
+const fullscreen = ref(isMapFullscreen())
 const showOnboarding = ref(false)
 const exportError = ref('')
 const statusMessage = ref('')
@@ -181,17 +183,28 @@ async function doExportHtml() {
   }
 }
 
-function toggleFullscreen() {
-  fullscreen.value = !fullscreen.value
+function refreshFullscreenLayout() {
   nextTick(() => {
     editor.value?.fitView?.()
     mountVenn()
   })
 }
 
-function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && fullscreen.value) fullscreen.value = false
+function toggleFullscreen() {
+  fullscreen.value = !fullscreen.value
+  refreshFullscreenLayout()
 }
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && fullscreen.value) {
+    fullscreen.value = false
+    refreshFullscreenLayout()
+  }
+}
+
+watch(fullscreen, (on) => {
+  setMapFullscreen(on)
+})
 
 function bootMap() {
   if (!canInteract.value) {

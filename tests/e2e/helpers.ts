@@ -18,6 +18,7 @@ export const test = base.extend<Fixtures>({
               localStorage.removeItem('ikigai-flowchart-document')
               localStorage.removeItem('ikigai-onboarding-done')
               localStorage.removeItem('ikigai-quiz-score')
+              localStorage.removeItem('ikigai-map-fullscreen')
               localStorage.removeItem('ikigai-disclaimer-dismissed')
             } catch {
               /* ignore */
@@ -52,6 +53,7 @@ export async function clearStorageOnce(page: import('@playwright/test').Page) {
         localStorage.removeItem('ikigai-flowchart-document')
         localStorage.removeItem('ikigai-onboarding-done')
         localStorage.removeItem('ikigai-quiz-score')
+        localStorage.removeItem('ikigai-map-fullscreen')
         localStorage.removeItem('ikigai-disclaimer-dismissed')
         localStorage.removeItem('ikigai-disclaimer-accepted')
         sessionStorage.removeItem('ikigai-disclaimer-declined')

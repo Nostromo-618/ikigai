@@ -43,6 +43,17 @@ export function setOnboardingDone(): void {
   localStorage.setItem(STORAGE_KEYS.onboardingDone, '1')
 }
 
+export function isMapFullscreen(): boolean {
+  if (typeof localStorage === 'undefined') return false
+  return localStorage.getItem(STORAGE_KEYS.mapFullscreen) === '1'
+}
+
+export function setMapFullscreen(on: boolean): void {
+  if (typeof localStorage === 'undefined') return
+  if (on) localStorage.setItem(STORAGE_KEYS.mapFullscreen, '1')
+  else localStorage.removeItem(STORAGE_KEYS.mapFullscreen)
+}
+
 export function saveQuizScore(payload: unknown): void {
   if (typeof localStorage === 'undefined') return
   if (!canUseInteractiveFeatures()) return
